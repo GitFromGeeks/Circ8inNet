@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 2), () {
-      Navigator.pushNamed(context, Routes.login);
+      Navigator.pushNamed(context, Routes.choose);
     });
   }
 
@@ -22,6 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
         body: Image(
+      fit: BoxFit.cover,
+      height: double.infinity,
+      width: double.infinity,
+      alignment: Alignment.center,
       image: AssetImage('assets/images/splash.png'),
     ));
   }
