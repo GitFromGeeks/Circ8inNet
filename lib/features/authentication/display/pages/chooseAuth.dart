@@ -68,7 +68,9 @@ class ChooseAuth extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.white,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, Routes.signup);
+                                },
                                 child: const Text(
                                   "Let's get started",
                                   style: TextStyle(

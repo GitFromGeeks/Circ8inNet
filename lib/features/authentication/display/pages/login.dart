@@ -1,3 +1,4 @@
+import 'package:cric8innet/Shared/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:cric8innet/Shared/constants.dart';
 
@@ -88,8 +89,7 @@ class LoginScreen extends StatelessWidget {
                         const Text("Create an account"),
                         TextButton(
                             onPressed: () {
-                              // Navigator.pushNamed(context, )
-                              //
+                              Navigator.pushNamed(context, Routes.signup);
                             },
                             child: const Text(
                               "Signup",
