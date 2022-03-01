@@ -53,14 +53,12 @@ class ChooseAuth extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("My Cricket",
-                                style: GoogleFonts.pacifico(
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.1)),
-                          ),
+                          const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Image(
+                                image:
+                                    AssetImage('assets/images/mycricket.png'),
+                              )),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.75,
                             height: MediaQuery.of(context).size.height * 0.06,
