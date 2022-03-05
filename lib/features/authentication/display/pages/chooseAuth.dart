@@ -56,6 +56,7 @@ class ChooseAuth extends StatelessWidget {
                           const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Image(
+                                height: 40,
                                 image:
                                     AssetImage('assets/images/mycricket.png'),
                               )),
@@ -125,10 +126,12 @@ class ChooseAuth extends StatelessWidget {
                           Image(
                             image: AssetImage("assets/icons/googlelogo.png"),
                           ),
-                          Spacer(),
-                          Text(
-                            "Sign in with Google",
-                            style: TextStyle(color: Colors.black),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Sign in with Google",
+                              style: TextStyle(color: Colors.black),
+                            ),
                           )
                         ],
                       )),
