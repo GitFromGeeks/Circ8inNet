@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cric8innet/Shared/routes.dart';
+import 'package:cric8innet/core/widgets/_backButton.dart';
 
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);
@@ -18,26 +19,7 @@ class Signup extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8),
                   child: Row(
                     children: [
-                      ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                    side:
-                                        const BorderSide(color: Colors.black))),
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.choose);
-                          },
-                          child: const Text(
-                            "     Back    ",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold),
-                          )),
+                      backButton(context),
                       const Spacer(),
                       const Image(
                           width: 130,

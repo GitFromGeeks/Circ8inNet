@@ -76,7 +76,9 @@ class LoginScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: Constant.primaryColor),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.home);
+                        },
                         child: const Text(
                           "Login",
                           style: TextStyle(color: Colors.black, fontSize: 12),

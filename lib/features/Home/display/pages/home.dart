@@ -1,5 +1,7 @@
 // import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import '../widgets/selectLocation.dart';
+import 'package:cric8innet/core/widgets/bottomBar.dart';
 // import 'package:cric8innet/features/Meet/display/pages/meet.dart';
 // import 'package:cric8innet/features/Learn/display/pages/learnPage.dart';
 // import 'package:cric8innet/features/Book/display/pages/bookPage.dart';
@@ -36,7 +38,7 @@ class _HomeState extends State<Home> {
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(
-                        Icons.add_alert_sharp,
+                        Icons.notifications,
                         color: Colors.white,
                       ))
                 ],
@@ -49,7 +51,14 @@ class _HomeState extends State<Home> {
                         style: ButtonStyle(
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.black)),
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet(
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(30.0))),
+                              context: context,
+                              builder: (context) => buildsheet(context));
+                        },
                         child: Row(
                           children: const [
                             Icon(
@@ -516,119 +525,7 @@ class _HomeState extends State<Home> {
                   )),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.75,
-              height: MediaQuery.of(context).size.height * 0.1,
-              child: Card(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30.0),
-                        topRight: Radius.circular(30.0))),
-                color: Colors.black,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      child: Card(
-                        color: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: const [
-                              Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Home",
-                                style: TextStyle(color: Colors.white),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    // IconButton(
-                    //     onPressed: () {
-                    //       //
-                    //     },
-                    //     icon: const Icon(
-                    //       Icons.home,
-                    //       color: Colors.white,
-                    //     )),
-                    Column(
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.connect_without_contact_rounded,
-                              color: Colors.grey,
-                            )),
-                        const Text("Soon",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 8,
-                            ))
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.cast_for_education_sharp,
-                              color: Colors.grey,
-                            )),
-                        const Text("Soon",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 8,
-                            ))
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.event_note_sharp,
-                              color: Colors.grey,
-                            )),
-                        const Text("Soon",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 8,
-                            ))
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.person,
-                              color: Colors.white,
-                            )),
-                        const Text("Me",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 8,
-                            ))
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
+          bottomNavBar(context)
         ],
       ),
     ));
