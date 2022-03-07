@@ -5,6 +5,7 @@ import 'package:cric8innet/features/authentication/display/pages/signup.dart';
 import 'package:cric8innet/features/Home/display/pages/home.dart';
 import 'package:cric8innet/features/Meet/display/pages/meet.dart';
 import 'package:cric8innet/features/Meet/display/pages/ActivityInfo.dart';
+import 'package:cric8innet/features/Meet/display/pages/createActivity.dart';
 
 class Routes {
   static const String login = '/login';
@@ -14,6 +15,7 @@ class Routes {
   static const String home = '/home';
   static const String meet = '/meet';
   static const String activityInfo = '/ActivityInfo';
+  static const String createActivity = '/createActivity';
 }
 
 final routes = {
@@ -24,4 +26,5 @@ final routes = {
   Routes.home: (context) => const Home(),
   Routes.meet: (context) => const MeetPage(),
   Routes.activityInfo: (context) => const ActivityInfo(),
+  Routes.createActivity: (context) => const CreateActivity(),
 };

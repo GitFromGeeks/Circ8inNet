@@ -36,7 +36,7 @@ Widget activityButton(context) {
                   color: Colors.green,
                   child: const Text("create Activity"),
                   onPressed: () {
-                    // Navigator.pushNamed(context, Routes.ActivityInfo);
+                    Navigator.pushNamed(context, Routes.createActivity);
                   }),
             ),
           )
