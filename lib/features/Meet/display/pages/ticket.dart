@@ -12,54 +12,73 @@ class Ticket extends StatelessWidget {
         body: Container(
       color: Colors.black,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            "The Match is on",
-            style: TextStyle(color: Colors.white),
+          const Padding(
+            padding: EdgeInsets.only(left: 8),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "The Match is on",
+                style: TextStyle(color: Colors.grey, fontSize: 30),
+              ),
+            ),
           ),
-          const Text(
-            "Gear up!",
-            style: TextStyle(color: Colors.white),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Gear up!",
+                style: TextStyle(color: Colors.grey, fontSize: 30),
+              ),
+            ),
           ),
-          ticketDetails(),
+          ticketDetails(Colors.white),
           Card(
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Column(
-                      children: const [
-                        Text("Time Slot"),
-                        Text.rich(TextSpan(children: [
-                          TextSpan(
-                              text: "1430",
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: "Hrs")
-                        ]))
-                      ],
-                    ),
-                    Column(
-                      children: const [
-                        Text("Admission Details"),
-                        Text("Zara Qureshi"),
-                        Text("Aman Zaid"),
-                        Text("Rizwan Khan")
-                      ],
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: const [
+                          Text("Time Slot"),
+                          Text.rich(TextSpan(children: [
+                            TextSpan(
+                                text: "1430",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: "Hrs")
+                          ]))
+                        ],
+                      ),
+                      Column(
+                        children: const [
+                          Text("Admission Details"),
+                          Text("Zara Qureshi"),
+                          Text("Aman Zaid"),
+                          Text("Rizwan Khan")
+                        ],
+                      )
+                    ],
+                  ),
                 ),
                 Container(
                   color: Constant.primaryColor,
-                  child: ticketDetails(),
+                  child: ticketDetails(Constant.primaryColor),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: CupertinoButton(
-                      color: Constant.primaryColor,
-                      child: const Text("Close"),
-                      onPressed: () {
-                        Navigator.pushNamed(context, Routes.meet);
-                      }),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: CupertinoButton(
+                        color: Constant.primaryColor,
+                        child: const Text("Close"),
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.meet);
+                        }),
+                  ),
                 )
               ],
             ),
@@ -70,41 +89,46 @@ class Ticket extends StatelessWidget {
   }
 }
 
-Widget ticketDetails() {
-  return Card(
-    color: Colors.white,
-    child: Row(
-      children: [
-        const Image(image: AssetImage('assets/images/meetbg.png')),
-        Column(
-          children: [
-            const Text(
-              "Zara",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Row(
+Widget ticketDetails(color) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Card(
+      color: color,
+      child: Row(
+        children: [
+          const Image(image: AssetImage('assets/images/ball.png')),
+          Column(
+            children: [
+              const Text(
+                "Zara",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.watch_later_outlined),
+                  Text("Tomorrow, Night")
+                ],
+              ),
+              const Text("14th, February 2022"),
+              const Text.rich(TextSpan(children: [
+                TextSpan(text: "Karma"),
+                TextSpan(
+                    text: "75", style: TextStyle(fontWeight: FontWeight.bold))
+              ]))
+            ],
+          ),
+          const Icon(Icons.location_on_outlined),
+          Expanded(
+            child: Column(
               children: const [
-                Icon(Icons.watch_later_outlined),
-                Text("Tomorrow, Night")
+                Text("6 B, Damodar Park, I B S Marg,"),
+                Text("Ghatkopar (w), Mumbai"),
+                Text("Maharashtra")
               ],
             ),
-            const Text("14th, February 2022"),
-            const Text.rich(TextSpan(children: [
-              TextSpan(text: "Karma"),
-              TextSpan(
-                  text: "75", style: TextStyle(fontWeight: FontWeight.bold))
-            ]))
-          ],
-        ),
-        const Icon(Icons.location_on_outlined),
-        Column(
-          children: const [
-            Text("6 B, Damodar Park, I B S Marg,"),
-            Text("Ghatkopar (w), Mumbai"),
-            Text("Maharashtra")
-          ],
-        )
-      ],
+          )
+        ],
+      ),
     ),
   );
 }

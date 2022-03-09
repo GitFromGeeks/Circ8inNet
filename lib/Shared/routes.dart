@@ -1,3 +1,6 @@
+import 'package:cric8innet/features/Learn/display/pages/learnPage.dart';
+import 'package:cric8innet/features/Learn/display/pages/resource.dart';
+import 'package:cric8innet/features/Meet/display/pages/ticket.dart';
 import 'package:cric8innet/features/authentication/display/pages/login.dart';
 import 'package:cric8innet/splashScreen.dart';
 import 'package:cric8innet/features/authentication/display/pages/chooseAuth.dart';
@@ -16,6 +19,9 @@ class Routes {
   static const String meet = '/meet';
   static const String activityInfo = '/ActivityInfo';
   static const String createActivity = '/createActivity';
+  static const String learnPage = '/learnPage';
+  static const String ticket = '/ticket';
+  static const String resource = '/resource';
 }
 
 final routes = {
@@ -27,4 +33,7 @@ final routes = {
   Routes.meet: (context) => const MeetPage(),
   Routes.activityInfo: (context) => const ActivityInfo(),
   Routes.createActivity: (context) => const CreateActivity(),
+  Routes.learnPage: (context) => const Learn(),
+  Routes.ticket: (context) => const Ticket(),
+  Routes.resource: (context) => const Resource(),
 };

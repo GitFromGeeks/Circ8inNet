@@ -12,7 +12,7 @@ Widget bottomNavBar(context) {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30.0),
                 topRight: Radius.circular(30.0))),
-        color: Colors.black,
+        color: Color.fromARGB(255, 65, 63, 63),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -75,12 +75,14 @@ Widget bottomNavBar(context) {
             Column(
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.learnPage);
+                    },
                     icon: const Icon(
                       Icons.cast_for_education_sharp,
                       color: Colors.grey,
                     )),
-                const Text("Soon",
+                const Text("Learn",
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 8,

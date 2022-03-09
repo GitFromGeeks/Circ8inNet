@@ -30,7 +30,7 @@ Widget inviteSuccess(context) {
               color: Constant.primaryColor,
               child: const Text("ok"),
               onPressed: () {
-                Navigator.pushNamed(context, Routes.meet);
+                Navigator.pushNamed(context, Routes.ticket);
               })
         ],
       ),
