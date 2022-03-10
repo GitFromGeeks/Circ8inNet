@@ -92,12 +92,14 @@ Widget bottomNavBar(context) {
             Column(
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.bookPage);
+                    },
                     icon: const Icon(
                       Icons.event_note_sharp,
                       color: Colors.grey,
                     )),
-                const Text("Soon",
+                const Text("Book",
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 8,

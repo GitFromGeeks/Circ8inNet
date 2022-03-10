@@ -1,3 +1,6 @@
+import 'package:cric8innet/features/Book/display/pages/bookPage.dart';
+import 'package:cric8innet/features/Book/display/pages/bookVenue.dart';
+import 'package:cric8innet/features/Book/display/pages/playgroundInfo.dart';
 import 'package:cric8innet/features/Learn/display/pages/learnPage.dart';
 import 'package:cric8innet/features/Learn/display/pages/resource.dart';
 import 'package:cric8innet/features/Meet/display/pages/ticket.dart';
@@ -22,6 +25,9 @@ class Routes {
   static const String learnPage = '/learnPage';
   static const String ticket = '/ticket';
   static const String resource = '/resource';
+  static const String playgroundInfo = '/playgroundInfo';
+  static const String bookVenue = '/bookVenue';
+  static const String bookPage = '/bookpage';
 }
 
 final routes = {
@@ -36,4 +42,7 @@ final routes = {
   Routes.learnPage: (context) => const Learn(),
   Routes.ticket: (context) => const Ticket(),
   Routes.resource: (context) => const Resource(),
+  Routes.playgroundInfo: (context) => const PlayGroundInfo(),
+  Routes.bookVenue: (context) => const BookVenue(),
+  Routes.bookPage: (context) => const Book(),
 };
