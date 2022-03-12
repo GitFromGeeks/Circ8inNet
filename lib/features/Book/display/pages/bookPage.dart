@@ -86,8 +86,8 @@ class Book extends StatelessWidget {
                         )),
                   ],
                 ),
-                playgroundTile(context),
-                playgroundTile(context),
+                // playgroundTile(context),
+                // playgroundTile(context),
                 const Padding(
                   padding: EdgeInsets.only(left: 8),
                   child: Align(
@@ -111,10 +111,10 @@ class Book extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      eventCardBook('assets/images/ball.png', "Dhamkapur")
+                      eventCardBook('assets/images/stadium.png', "Dhamkapur"),
                     ],
                   ),
-                )
+                ),
               ],
             )
           ],

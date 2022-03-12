@@ -6,9 +6,21 @@ Widget eventCardBook(url, title) {
     child: Card(
       child: Column(
         children: [
-          Image(image: AssetImage(url)),
-          Center(
-            child: Text(title),
+          Image(fit: BoxFit.fitWidth, image: AssetImage(url)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const Spacer(),
+                const Text(
+                  "14th Nov 2022",
+                ),
+              ],
+            ),
           )
         ],
       ),
