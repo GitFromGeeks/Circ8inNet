@@ -13,7 +13,7 @@ class Resource extends StatelessWidget {
           children: [
             const Image(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/images/signupbg.png')),
+                image: AssetImage('assets/images/splash.png')),
             Column(
               children: [
                 Align(
