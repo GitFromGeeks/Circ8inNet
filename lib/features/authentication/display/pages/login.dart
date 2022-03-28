@@ -1,10 +1,25 @@
+import 'dart:math';
+
 import 'package:cric8innet/Shared/routes.dart';
+import 'package:cric8innet/features/Home/display/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:cric8innet/Shared/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  late SharedPreferences sharedPreferences;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +71,7 @@ class LoginScreen extends StatelessWidget {
                             color: Colors.black,
                           ),
                           labelText: "Username"),
+                      controller: usernameController,
                     ),
                     const SizedBox(
                       height: 8,
@@ -67,6 +83,7 @@ class LoginScreen extends StatelessWidget {
                             color: Colors.black,
                           ),
                           labelText: "password"),
+                      controller: passwordController,
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
@@ -77,7 +94,12 @@ class LoginScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             primary: Constant.primaryColor),
                         onPressed: () {
-                          Navigator.pushNamed(context, Routes.home);
+                          // Navigator.pushNamed(context, Routes.home);
+                          setState(() {
+                            isLoading = true;
+                          });
+                          signIn(
+                              usernameController.text, passwordController.text);
                         },
                         child: const Text(
                           "Login",
@@ -109,5 +131,40 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  signIn(String username, pass) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map data = {'username': 'yfrtr', 'password': '123456'};
+    var jsonResponse = null;
+    try {
+      var response = await http.post(
+          Uri.parse("http://cdemo.magnifyingevents.com/api/users/user_login"),
+          body: {"username": "yfrtr", "password": "123456"});
+      if (response.statusCode == 200) {
+        jsonResponse = json.decode(response.body);
+        if (jsonResponse != null) {
+          setState(() {
+            isLoading = false;
+          });
+          sharedPreferences.setString("token", jsonResponse['token']);
+          print("GENERATED TOKEN IS :- ");
+          print(jsonResponse['token']);
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (BuildContext context) => const Home()),
+              (Route<dynamic> route) => false);
+        }
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        print('!200 CODE');
+        print(response.body);
+      }
+    } catch (e) {
+      print(e);
+      print('didnt got DATA');
+    }
   }
 }

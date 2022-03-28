@@ -106,38 +106,38 @@ class ChooseAuth extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              Container(
-                decoration: const BoxDecoration(boxShadow: [
-                  BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 20.0,
-                      spreadRadius: 0.0,
-                      offset: Offset(5.0, 5.0))
-                ]),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.75,
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        children: const [
-                          Image(
-                            image: AssetImage("assets/icons/googlelogo.png"),
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "               Sign in with Google",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ),
+              // Container(
+              //   decoration: const BoxDecoration(boxShadow: [
+              //     BoxShadow(
+              //         color: Colors.black,
+              //         blurRadius: 20.0,
+              //         spreadRadius: 0.0,
+              //         offset: Offset(5.0, 5.0))
+              //   ]),
+              //   child: SizedBox(
+              //     width: MediaQuery.of(context).size.width * 0.75,
+              //     height: MediaQuery.of(context).size.height * 0.06,
+              //     child: ElevatedButton(
+              //         style: ElevatedButton.styleFrom(
+              //           primary: Colors.white,
+              //         ),
+              //         onPressed: () {},
+              //         child: Row(
+              //           children: const [
+              //             Image(
+              //               image: AssetImage("assets/icons/googlelogo.png"),
+              //             ),
+              //             Align(
+              //               alignment: Alignment.center,
+              //               child: Text(
+              //                 "               Sign in with Google",
+              //                 style: TextStyle(color: Colors.black),
+              //               ),
+              //             )
+              //           ],
+              //         )),
+              //   ),
+              // ),
             ],
           ),
         ),

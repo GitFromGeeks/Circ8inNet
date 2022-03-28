@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:cric8innet/features/authentication/display/pages/chooseAuth.dart';
 import 'package:flutter/material.dart';
 import 'package:cric8innet/Shared/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,9 +15,24 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
-      Navigator.pushNamed(context, Routes.choose);
-    });
+    checkLoginStatus();
+  }
+
+  late SharedPreferences sharedPreferences;
+
+  checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getString("token") == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (BuildContext context) => const ChooseAuth()),
+          (Route<dynamic> route) => false);
+      return false;
+    } else {
+      Timer(const Duration(seconds: 2), () {
+        Navigator.pushNamed(context, Routes.home);
+      });
+    }
   }
 
   @override
