@@ -16,36 +16,22 @@ Widget bottomNavBar(context) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.06,
-              child: Card(
-                color: Colors.green,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.home,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, Routes.home);
-                        },
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      const Text(
-                        "Home",
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+            Column(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.home);
+                    },
+                    icon: const Icon(
+                      Icons.home,
+                      color: Colors.grey,
+                    )),
+                const Text("Meet",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 8,
+                    ))
+              ],
             ),
             // IconButton(
             //     onPressed: () {
