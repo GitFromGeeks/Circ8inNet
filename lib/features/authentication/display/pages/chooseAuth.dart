@@ -99,13 +99,13 @@ class ChooseAuth extends StatelessWidget {
                       ))
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "or",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
+              // const Padding(
+              //   padding: EdgeInsets.all(10.0),
+              //   child: Text(
+              //     "or",
+              //     style: TextStyle(fontWeight: FontWeight.bold),
+              //   ),
+              // ),
               // Container(
               //   decoration: const BoxDecoration(boxShadow: [
               //     BoxShadow(

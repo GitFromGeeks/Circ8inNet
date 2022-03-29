@@ -1,7 +1,9 @@
 // import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:cric8innet/features/authentication/display/pages/chooseAuth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/selectLocation.dart';
 import 'package:cric8innet/core/widgets/bottomBar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:cric8innet/features/Meet/display/pages/meet.dart';
 // import 'package:cric8innet/features/Learn/display/pages/learnPage.dart';
 // import 'package:cric8innet/features/Book/display/pages/bookPage.dart';
@@ -15,6 +17,29 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late String userName;
+  @override
+  void initState() {
+    super.initState();
+    getUsername();
+  }
+
+  getUsername() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    userName = pref.getString("username")!;
+    print(userName);
+  }
+
+  //Logout
+  logout() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.clear();
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+            builder: (BuildContext context) => const ChooseAuth()),
+        (Route<dynamic> route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -100,7 +125,7 @@ class _HomeState extends State<Home> {
                       Column(
                         children: const [
                           Text(
-                            "Hey, Zara",
+                            "Hey there",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -122,36 +147,25 @@ class _HomeState extends State<Home> {
                           color: Colors.white,
                         ),
                       ),
-                      Column(children: const [
-                        Text(
-                          "2",
-                          style: TextStyle(color: Colors.white),
+                      InkWell(
+                        onTap: () {
+                          logout();
+                        },
+                        child: Row(
+                          children: const [
+                            Text(
+                              "Logout",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          "1",
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ]),
-                      Column(
-                        children: [
-                          TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                "Activities",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                              )),
-                          TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                "Playpals",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                              ))
-                        ],
                       )
                     ],
                   ),
@@ -448,7 +462,7 @@ class _HomeState extends State<Home> {
                           //
                         },
                         child: Card(
-                          color: Color.fromARGB(255, 212, 204, 204),
+                          color: const Color.fromARGB(255, 212, 204, 204),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
                           child: Row(
@@ -477,6 +491,10 @@ class _HomeState extends State<Home> {
                               Text(
                                 "MEET",
                                 style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "    Soon",
+                                style: TextStyle(color: Colors.grey),
                               )
                             ],
                           ),
@@ -487,7 +505,7 @@ class _HomeState extends State<Home> {
                           //
                         },
                         child: Card(
-                          color: Color.fromARGB(255, 212, 204, 204),
+                          color: const Color.fromARGB(255, 212, 204, 204),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
                           child: Row(
@@ -516,6 +534,10 @@ class _HomeState extends State<Home> {
                               Text(
                                 "LEARN",
                                 style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "    Soon",
+                                style: TextStyle(color: Colors.grey),
                               )
                             ],
                           ),
@@ -531,111 +553,3 @@ class _HomeState extends State<Home> {
     ));
   }
 }
-  // late int index;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   index = 0;
-  // }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return SafeArea(
-  //     child: Scaffold(
-  //       body: buildPage(),
-  //       bottomNavigationBar: bottomBar(),
-  //     ),
-  //   );
-  // }
-
-  // Widget buildPage() {
-  //   switch (index) {
-  //     case 0:
-  //       return homePage(context);
-  //     case 1:
-  //       return meetPage();
-  //     case 2:
-  //       return learnPage();
-  //     case 3:
-  //       return bookPage();
-  //     case 4:
-  //       return profile();
-  //     default:
-  //       return homePage(context);
-  //   }
-  // }
-
-//   Widget bottomBar() {
-//     return BottomNavyBar(
-//         containerHeight: 60,
-//         itemCornerRadius: 16,
-//         backgroundColor: Colors.black,
-//         selectedIndex: index,
-//         onItemSelected: (index) => setState(() => this.index = index),
-//         items: [
-//           BottomNavyBarItem(
-//               inactiveColor: Colors.white,
-//               activeColor: Colors.white,
-//               textAlign: TextAlign.center,
-//               icon: const Icon(Icons.home),
-//               title: const Text("Home",
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                   ))),
-//           BottomNavyBarItem(
-//               inactiveColor: Colors.white,
-//               activeColor: Colors.white,
-//               textAlign: TextAlign.center,
-//               icon: const Icon(Icons.connect_without_contact),
-//               title: const Text("Meet",
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                   ))),
-//           BottomNavyBarItem(
-//               inactiveColor: Colors.white,
-//               activeColor: Colors.white,
-//               textAlign: TextAlign.center,
-//               icon: const Icon(Icons.cast_for_education_sharp),
-//               title: const Text("Learn",
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                   ))),
-//           BottomNavyBarItem(
-//               inactiveColor: Colors.white,
-//               activeColor: Colors.white,
-//               textAlign: TextAlign.center,
-//               icon: const Icon(Icons.event_note_sharp),
-//               title: const Text("Book",
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                   ))),
-//           BottomNavyBarItem(
-//               inactiveColor: Colors.white,
-//               activeColor: Colors.white,
-//               textAlign: TextAlign.center,
-//               icon: const Icon(Icons.person),
-//               title: const Text("Me",
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                   ))),
-//         ]);
-//   }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

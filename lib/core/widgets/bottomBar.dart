@@ -24,11 +24,11 @@ Widget bottomNavBar(context) {
                     },
                     icon: const Icon(
                       Icons.home,
-                      color: Colors.grey,
+                      color: Colors.white,
                     )),
                 const Text("Meet",
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Colors.white,
                       fontSize: 8,
                     ))
               ],
@@ -51,7 +51,7 @@ Widget bottomNavBar(context) {
                       Icons.connect_without_contact_rounded,
                       color: Colors.grey,
                     )),
-                const Text("Meet",
+                const Text("Meet  Soon",
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 8,
@@ -68,7 +68,7 @@ Widget bottomNavBar(context) {
                       Icons.cast_for_education_sharp,
                       color: Colors.grey,
                     )),
-                const Text("Learn",
+                const Text("Learn Soon",
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 8,
@@ -83,11 +83,11 @@ Widget bottomNavBar(context) {
                     },
                     icon: const Icon(
                       Icons.event_note_sharp,
-                      color: Colors.grey,
+                      color: Colors.white,
                     )),
                 const Text("Book",
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Colors.white,
                       fontSize: 8,
                     ))
               ],

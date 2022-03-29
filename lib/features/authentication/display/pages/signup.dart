@@ -15,7 +15,12 @@ class _SignupState extends State<Signup> {
   bool isLoading = false;
 
   //Controllers
-  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController mobController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final TextEditingController pincodeController = TextEditingController();
+  final TextEditingController stateController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController1 = TextEditingController();
   final TextEditingController passwordController2 = TextEditingController();
@@ -76,13 +81,22 @@ class _SignupState extends State<Signup> {
                     child: Column(
                       children: [
                         TextFormField(
-                          controller: fullNameController,
+                          controller: firstNameController,
                           decoration: const InputDecoration(
                               icon: Icon(
                                 Icons.person,
                                 color: Colors.black,
                               ),
-                              labelText: "Full name"),
+                              labelText: "First Name"),
+                        ),
+                        TextFormField(
+                          controller: lastNameController,
+                          decoration: const InputDecoration(
+                              icon: Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
+                              labelText: "Last Name"),
                         ),
                         TextFormField(
                           controller: usernameController,
@@ -91,7 +105,17 @@ class _SignupState extends State<Signup> {
                                 Icons.person,
                                 color: Colors.black,
                               ),
-                              labelText: "Full name"),
+                              labelText: "Last Name"),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.phone,
+                          controller: mobController,
+                          decoration: const InputDecoration(
+                              icon: Icon(
+                                Icons.email,
+                                color: Colors.black,
+                              ),
+                              labelText: "Mobile No."),
                         ),
                         TextFormField(
                           controller: emailController,
@@ -101,6 +125,34 @@ class _SignupState extends State<Signup> {
                                 color: Colors.black,
                               ),
                               labelText: "Email id"),
+                        ),
+                        TextFormField(
+                          controller: cityController,
+                          decoration: const InputDecoration(
+                              icon: Icon(
+                                Icons.location_city,
+                                color: Colors.black,
+                              ),
+                              labelText: "City"),
+                        ),
+                        TextFormField(
+                          controller: stateController,
+                          decoration: const InputDecoration(
+                              icon: Icon(
+                                Icons.location_on_outlined,
+                                color: Colors.black,
+                              ),
+                              labelText: "City"),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.phone,
+                          controller: pincodeController,
+                          decoration: const InputDecoration(
+                              icon: Icon(
+                                Icons.pin,
+                                color: Colors.black,
+                              ),
+                              labelText: "Pin Code"),
                         ),
                         TextFormField(
                           controller: passwordController1,
@@ -148,10 +200,8 @@ class _SignupState extends State<Signup> {
                                           BorderRadius.circular(50.0)))),
                           onPressed: () {
                             // Navigator.pushNamed(context, Routes.home);
-                            setState(() {
-                              isLoading = true;
-                            });
                             _form.currentState?.validate();
+                            callAPIFunc();
                           },
                           child: const Text(
                             "SIGN UP",
@@ -188,36 +238,64 @@ class _SignupState extends State<Signup> {
     );
   }
 
-  singUP(String firstname, lastName, mob, email, city, pincode, state, username,
-      password, Image image) async {
-    Map data = {
-      'name': firstname,
-      'username': username,
-      'email': email,
-      'password': password
-    };
+  callAPIFunc() async {
+    setState(() {
+      isLoading = true;
+    });
+    singUP(
+        firstNameController.text,
+        lastNameController.text,
+        mobController.text,
+        emailController.text,
+        cityController.text,
+        pincodeController.text,
+        stateController.text,
+        usernameController.text,
+        passwordController2.text);
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  singUP(
+    String firstname,
+    lastName,
+    mob,
+    email,
+    city,
+    pincode,
+    state,
+    username,
+    password,
+  ) async {
     try {
       var response = await http.post(
           Uri.parse("http://cdemo.magnifyingevents.com/api/users/user_signup"),
-          body: data);
+          body: {
+            "name": firstname,
+            "last_name": lastName,
+            "mob_no": mob,
+            "email": email,
+            "city": city,
+            "pincode": pincode,
+            "state": state,
+            "username": username,
+            "password": password,
+            "user_img": "null",
+          });
       if (response.statusCode == 200 || response.statusCode == 201) {
-        setState(() {
-          isLoading = false;
-        });
+        print(
+            "RESPONSE IS HERE _-------------------------------------------------");
+        print(response.body);
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const ChooseAuth()),
             (Route<dynamic> route) => false);
       } else {
-        setState(() {
-          isLoading = false;
-        });
         print("Server Error");
+        print(response.body);
       }
     } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
       print(e);
     }
   }

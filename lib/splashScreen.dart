@@ -22,17 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   checkLoginStatus() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    if (sharedPreferences.getString("token") == null) {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (BuildContext context) => const ChooseAuth()),
-          (Route<dynamic> route) => false);
-      return false;
-    } else {
-      Timer(const Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
+      if (sharedPreferences.getString("token") == null) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (BuildContext context) => const ChooseAuth()),
+            (Route<dynamic> route) => false);
+      } else {
         Navigator.pushNamed(context, Routes.home);
-      });
-    }
+      }
+    });
   }
 
   @override
