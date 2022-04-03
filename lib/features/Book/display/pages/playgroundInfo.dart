@@ -11,78 +11,104 @@ class PlayGroundInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
-      children: [
-        const Image(
-            fit: BoxFit.cover, image: AssetImage('assets/images/signupbg.png')),
-        Column(
-          children: [
-            const Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.favorite,
-                  color: Colors.red,
+    return SafeArea(
+      child: Scaffold(
+          body: Column(
+        children: [
+          Stack(
+            children: [
+              const ClipRRect(
+                borderRadius:
+                    BorderRadius.vertical(bottom: Radius.circular(50.0)),
+                child: Image(
+                    width: double.infinity,
+                    height: 500,
+                    image: AssetImage('assets/images/login.png')),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    ),
+                  ),
                 ),
               ),
-            ),
-            Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: backButton(context),
-                )),
-            const Align(
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: backButton(context),
+                    )),
+              ),
+            ],
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 12),
+            child: Align(
               alignment: Alignment.center,
               child: Text(
                 "Dikshant Global Cricket Ground",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.star,
-                    color: Colors.yellow,
-                  ),
-                  Text("5"),
-                  Spacer(),
-                  Icon(Icons.location_on),
-                  Text("Zirakpur")
-                ],
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: const [
+                Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                ),
+                Text("5"),
+                Spacer(),
+                Icon(Icons.location_on),
+                Text("Zirakpur")
+              ],
             ),
-            const Expanded(
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 8, right: 8),
+            child: Expanded(
               child: Text(
                   "Lorem Ipsum dolor sit amet, connectetur adispscing elit. Anenean ilgula nunc, efficultur at tortor nec, maximus sodales est."),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.green),
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.remove,
-                    color: Colors.green,
-                  ),
-                  Text("1"),
-                  Icon(
-                    Icons.add,
-                    color: Colors.green,
-                  )
-                ],
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: SizedBox(
+              width: 70,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    side: const BorderSide(color: Colors.green),
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.remove,
+                      color: Colors.green,
+                    ),
+                    Text("1"),
+                    Icon(
+                      Icons.add,
+                      color: Colors.green,
+                    )
+                  ],
+                ),
               ),
             ),
-            const Divider(),
-            review(),
-            const Divider(),
-            review(),
-            CupertinoButton(
+          ),
+          Expanded(child: Container()),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 30),
+            child: CupertinoButton(
                 color: Constant.primaryColor,
                 child: const Text(
                   "Book this venue",
@@ -90,11 +116,11 @@ class PlayGroundInfo extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.bookVenue);
-                })
-          ],
-        )
-      ],
-    ));
+                }),
+          )
+        ],
+      )),
+    );
   }
 }
 

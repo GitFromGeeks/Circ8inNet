@@ -12,6 +12,7 @@ import 'package:cric8innet/features/Home/display/pages/home.dart';
 import 'package:cric8innet/features/Meet/display/pages/meet.dart';
 import 'package:cric8innet/features/Meet/display/pages/ActivityInfo.dart';
 import 'package:cric8innet/features/Meet/display/pages/createActivity.dart';
+import 'package:cric8innet/features/Profile/display/pages/profile.dart';
 
 class Routes {
   static const String login = '/login';
@@ -28,6 +29,7 @@ class Routes {
   static const String playgroundInfo = '/playgroundInfo';
   static const String bookVenue = '/bookVenue';
   static const String bookPage = '/bookpage';
+  static const String profile = '/profile';
 }
 
 final routes = {
@@ -45,4 +47,5 @@ final routes = {
   Routes.playgroundInfo: (context) => const PlayGroundInfo(),
   Routes.bookVenue: (context) => const BookVenue(),
   Routes.bookPage: (context) => const Book(),
+  Routes.profile: (context) => const Profile(),
 };

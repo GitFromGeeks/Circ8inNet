@@ -6,7 +6,7 @@ Widget eventCardBook(url, title) {
     child: Card(
       child: Column(
         children: [
-          Image(fit: BoxFit.fitWidth, image: AssetImage(url)),
+          Image(fit: BoxFit.cover, image: AssetImage(url)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
