@@ -1,61 +1,43 @@
 import 'package:cric8innet/Shared/constants.dart';
 import 'package:cric8innet/core/widgets/_backButton.dart';
+import 'package:cric8innet/features/Book/data/models/venues.dart';
+import 'package:cric8innet/features/Book/display/provider/selectedVenueProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class BookVenue extends StatelessWidget {
+class BookVenue extends StatefulWidget {
   const BookVenue({Key? key}) : super(key: key);
 
   @override
+  State<BookVenue> createState() => _BookVenueState();
+}
+
+class _BookVenueState extends State<BookVenue> {
+  @override
   Widget build(BuildContext context) {
+    Venues? venue = Provider.of<selectedVenueProvider>(context).selectedvenues;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Constant.primaryColor,
-        title: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: backButton(context),
-        ),
-        actions: const [
-          Image(image: AssetImage('assets/images/createActivityTop.png'))
-        ],
-      ),
-      body: Column(
+        body: Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: Column(
         children: [
-          const Text("Choose the number of seats you want to book"),
-          Card(
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.green),
-                borderRadius: BorderRadius.circular(10.0)),
-            child: Row(
-              children: const [
-                Icon(
-                  Icons.remove,
-                  color: Colors.green,
-                ),
-                Text("1"),
-                Icon(
-                  Icons.add,
-                  color: Colors.green,
-                )
-              ],
-            ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              backButton(context),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.1,
+              ),
+              Text(
+                venue!.venueName!,
+                style: const TextStyle(fontSize: 20),
+              )
+            ],
           ),
-          const Image(
-              width: double.infinity,
-              image: AssetImage('assets/images/stadium.png')),
-          // for (int i = 0; i < 8; i++)
-          //   {
-          //     for (int j = 0; j < 30; j++)
-          //       {
-          //         Container(
-          //           child: Icon(
-          //             Icons.stop,
-          //             color: Colors.black,
-          //           ),
-          //         )
-          //       }
-          //   }
         ],
       ),
-    );
+    ));
   }
 }

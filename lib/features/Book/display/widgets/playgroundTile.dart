@@ -1,11 +1,16 @@
 import 'package:cric8innet/Shared/constants.dart';
 import 'package:cric8innet/Shared/routes.dart';
+import 'package:cric8innet/features/Book/data/models/venues.dart';
 import 'package:cric8innet/features/Book/display/pages/playgroundInfo.dart';
+import 'package:cric8innet/features/Book/display/provider/selectedVenueProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-Widget playgroundTile(context) {
+Widget playgroundTile(context, Venues venue) {
   return InkWell(
     onTap: () {
+      Provider.of<selectedVenueProvider>(context, listen: false)
+          .changeSelectedVenue(venue);
       Navigator.pushNamed(context, Routes.playgroundInfo);
     },
     child: Card(
@@ -13,17 +18,20 @@ Widget playgroundTile(context) {
       child: Padding(
         padding: const EdgeInsets.all(2.0),
         child: ListTile(
-          leading: const Image(
-            image: AssetImage('assets/images/ball.png'),
+          leading: Image(
+            image: NetworkImage(venue.venueImg!),
           ),
-          title: const Text(
-            "Dikhshant Global Cricket Ground",
-            style: TextStyle(fontWeight: FontWeight.bold),
+          title: Text(
+            venue.venueName!,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           subtitle: Column(
             children: [
               Row(
-                children: const [Icon(Icons.location_on), Text("Zirakpur")],
+                children: [
+                  const Icon(Icons.location_on),
+                  Text(venue.venueCity!)
+                ],
               ),
               Row(
                 children: const [

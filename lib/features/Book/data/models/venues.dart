@@ -1,51 +1,4 @@
 class Venues {
-  int? status;
-  Data? data;
-  String? message;
-
-  Venues({this.status, this.data, this.message});
-
-  Venues.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
-    message = json['message'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    data['message'] = message;
-    return data;
-  }
-}
-
-class Data {
-  List<VenueList>? venueList;
-
-  Data({this.venueList});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    if (json['venue_list'] != null) {
-      venueList = <VenueList>[];
-      json['venue_list'].forEach((v) {
-        venueList!.add(VenueList.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (venueList != null) {
-      data['venue_list'] = venueList!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class VenueList {
   String? venueId;
   String? venueName;
   String? venueDes;
@@ -61,7 +14,7 @@ class VenueList {
   String? createdTime;
   String? status;
 
-  VenueList(
+  Venues(
       {this.venueId,
       this.venueName,
       this.venueDes,
@@ -77,7 +30,7 @@ class VenueList {
       this.createdTime,
       this.status});
 
-  VenueList.fromJson(Map<String, dynamic> json) {
+  Venues.fromJson(Map<String, dynamic> json) {
     venueId = json['venue_id'];
     venueName = json['venue_name'];
     venueDes = json['venue_des'];

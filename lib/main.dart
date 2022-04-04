@@ -1,5 +1,7 @@
+import 'package:cric8innet/features/Book/display/provider/selectedVenueProvider.dart';
 import 'package:cric8innet/splashScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'Shared/routes.dart';
 
 void main() {
@@ -11,13 +13,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Cric8inNet",
-      theme: ThemeData.light(),
-      home: const SplashScreen(),
-      debugShowCheckedModeBanner: false,
-      initialRoute: Routes.splash,
-      routes: routes,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => selectedVenueProvider(),
+        )
+      ],
+      child: MaterialApp(
+        title: "Cric8inNet",
+        theme: ThemeData.light(),
+        home: const SplashScreen(),
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routes.splash,
+        routes: routes,
+      ),
     );
   }
 }

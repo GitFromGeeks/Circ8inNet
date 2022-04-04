@@ -1,13 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:cric8innet/core/widgets/bottomBar.dart';
 import 'package:cric8innet/features/Book/data/models/venues.dart';
 import 'package:cric8innet/features/Book/display/widgets/blackButton.dart';
-import 'package:cric8innet/features/Book/display/widgets/eventCard.dart';
 import 'package:cric8innet/features/Book/display/widgets/playgroundTile.dart';
-import 'package:cric8innet/features/Meet/display/widgets/eventCard.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,13 +28,10 @@ class _BookState extends State<Book> {
     setState(() {
       isLoading = true;
     });
-    // venueList = await getVenues();
-    Timer(const Duration(seconds: 2), () {
-      setState(() {
-        isLoading = false;
-      });
+    venueList = await getVenues();
+    setState(() {
+      isLoading = false;
     });
-    // print(venueList);
   }
 
   Future<List<Venues>> getVenues() async {
@@ -46,17 +39,16 @@ class _BookState extends State<Book> {
         Uri.parse("http://cdemo.magnifyingevents.com/api/venue/venue_list"));
     if (response.statusCode == 200) {
       List<Venues> models = [];
-      for (var i = 0; i < jsonDecode(response.body).length; i++) {
-        var jsonData = jsonDecode(response.body);
+      for (var i = 0;
+          i < jsonDecode(response.body)['data']['venue_list'].length;
+          i++) {
+        var jsonData = jsonDecode(response.body)['data']['venue_list'];
         models =
             List<Venues>.from(jsonData.map((data) => Venues.fromJson(data)));
       }
-      print("STATUS 200");
-      print(models);
       return models;
     } else {
       print("!=200");
-      print(response.body);
     }
     return [];
   }
@@ -170,12 +162,14 @@ class _BookState extends State<Book> {
                       : Expanded(
                           child: SizedBox(
                             height: MediaQuery.of(context).size.height * 0.4,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: 6,
-                                itemBuilder: (context, int index) {
-                                  return playgroundTile(context);
-                                }),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  for (var i = 0; i < venueList.length; i++)
+                                    playgroundTile(context, venueList[i])
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                   // const Padding(
