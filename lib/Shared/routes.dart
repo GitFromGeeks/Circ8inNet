@@ -46,7 +46,7 @@ final routes = {
   Routes.ticket: (context) => const Ticket(),
   Routes.resource: (context) => const Resource(),
   Routes.playgroundInfo: (context) => const PlayGroundInfo(),
-  Routes.bookVenue: (context) => const BookVenue(),
+  // Routes.bookVenue: (context) => const BookVenue(),
   Routes.bookPage: (context) => const Book(),
   Routes.profile: (context) => const Profile(),
 };

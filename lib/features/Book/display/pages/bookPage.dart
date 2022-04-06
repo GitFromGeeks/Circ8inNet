@@ -14,9 +14,25 @@ class Book extends StatefulWidget {
   State<Book> createState() => _BookState();
 }
 
+class Debouncer {
+  late final int milliseconds;
+  late VoidCallback action;
+  late Timer _timer;
+  Debouncer({required this.milliseconds});
+  run(VoidCallback action) {
+    if (null != _timer) {
+      _timer.cancel();
+    }
+    _timer = Timer(Duration(microseconds: milliseconds), action);
+  }
+}
+
 class _BookState extends State<Book> {
   late bool isLoading;
   late List<Venues> venueList;
+  late List<Venues> filter = venueList;
+
+  final _debouncer = Debouncer(milliseconds: 300);
 
   @override
   void initState() {
@@ -101,21 +117,31 @@ class _BookState extends State<Book> {
                   const SizedBox(
                     height: 8,
                   ),
-                  SizedBox(
-                    height: 50,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                              labelText: "Search venue here"),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 50,
+                  //   child: Card(
+                  //     shape: RoundedRectangleBorder(
+                  //         side: const BorderSide(color: Colors.black),
+                  //         borderRadius: BorderRadius.circular(10.0)),
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.all(8.0),
+                  //       child: TextFormField(
+                  //         decoration: const InputDecoration(hintText: "Search"),
+                  //         onChanged: (string) {
+                  //           _debouncer.run(() {
+                  //             setState(() {
+                  //               filter = venueList
+                  //                   .where((u) => (u.venueName!
+                  //                       .toLowerCase()
+                  //                       .contains(string.toLowerCase())))
+                  //                   .toList();
+                  //             });
+                  //           });
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Align(
@@ -125,28 +151,28 @@ class _BookState extends State<Book> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
                   ),
-                  Row(
-                    children: [
-                      blackButton(
-                          "Favorites",
-                          const Icon(
-                            Icons.discount_rounded,
-                            color: Colors.white,
-                          )),
-                      blackButton(
-                          "Offer",
-                          const Icon(
-                            Icons.favorite_rounded,
-                            color: Colors.white,
-                          )),
-                      blackButton(
-                          "Quick Book",
-                          const Icon(
-                            Icons.book_online_outlined,
-                            color: Colors.white,
-                          )),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     blackButton(
+                  //         "Favorites",
+                  //         const Icon(
+                  //           Icons.discount_rounded,
+                  //           color: Colors.white,
+                  //         )),
+                  //     blackButton(
+                  //         "Offer",
+                  //         const Icon(
+                  //           Icons.favorite_rounded,
+                  //           color: Colors.white,
+                  //         )),
+                  //     blackButton(
+                  //         "Quick Book",
+                  //         const Icon(
+                  //           Icons.book_online_outlined,
+                  //           color: Colors.white,
+                  //         )),
+                  //   ],
+                  // ),
                   const Padding(
                     padding: EdgeInsets.only(left: 8),
                     child: Align(
@@ -165,8 +191,8 @@ class _BookState extends State<Book> {
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  for (var i = 0; i < venueList.length; i++)
-                                    playgroundTile(context, venueList[i])
+                                  for (var i = 0; i < filter.length; i++)
+                                    playgroundTile(context, filter[i])
                                 ],
                               ),
                             ),

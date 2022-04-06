@@ -1,3 +1,4 @@
+import 'package:cric8innet/features/Book/display/provider/selectedDateProvider.dart';
 import 'package:cric8innet/features/Book/display/provider/selectedVenueProvider.dart';
 import 'package:cric8innet/splashScreen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => selectedVenueProvider(),
-        )
+        ),
+        ChangeNotifierProvider(create: (context) => selectedDateProvider())
       ],
       child: MaterialApp(
         title: "Cric8inNet",

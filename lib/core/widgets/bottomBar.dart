@@ -45,7 +45,7 @@ Widget bottomNavBar(context) {
               children: [
                 IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.meet);
+                      // Navigator.pushNamed(context, Routes.meet);
                     },
                     icon: const Icon(
                       Icons.connect_without_contact_rounded,
@@ -62,7 +62,7 @@ Widget bottomNavBar(context) {
               children: [
                 IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.learnPage);
+                      // Navigator.pushNamed(context, Routes.learnPage);
                     },
                     icon: const Icon(
                       Icons.cast_for_education_sharp,

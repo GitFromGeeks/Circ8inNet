@@ -68,44 +68,45 @@ class _HomeState extends State<Home> {
                       ))
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Row(
-                  children: [
-                    ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.black)),
-                        onPressed: () {
-                          showModalBottomSheet(
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(30.0))),
-                              context: context,
-                              builder: (context) => buildsheet(context));
-                        },
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.location_pin,
-                              color: Colors.white,
-                            ),
-                            Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.white,
-                            )
-                          ],
-                        )),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    const Text(
-                      "Delhi Railway Station",
-                      style: TextStyle(color: Colors.white),
-                    )
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 8),
+              //   child: Row(
+              //     children: [
+              //       ElevatedButton(
+              //           style: ButtonStyle(
+              //               backgroundColor:
+              //                   MaterialStateProperty.all(Colors.black)),
+              //           onPressed: () {
+              //             showModalBottomSheet(
+              //                 shape: const RoundedRectangleBorder(
+              //                     borderRadius: BorderRadius.vertical(
+              //                         top: Radius.circular(30.0))),
+              //                 context: context,
+              //                 builder: (context) => buildsheet(context));
+              //           },
+              //           child: Row(
+              //             children: const [
+              //               Icon(
+              //                 Icons.location_pin,
+              //                 color: Colors.white,
+              //               ),
+              //               Icon(
+              //                 Icons.arrow_drop_down,
+              //                 color: Colors.white,
+              //               )
+              //             ],
+              //           )),
+              //       const SizedBox(
+              //         width: 4,
+              //       ),
+              //       const Text(
+              //         "Delhi Railway Station",
+              //         style: TextStyle(color: Colors.white),
+              //       )
+              //     ],
+              //   ),
+              // ),
+
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.1,
               ),

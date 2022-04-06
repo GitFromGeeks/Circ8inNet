@@ -4,13 +4,50 @@ import 'package:cric8innet/Shared/constants.dart';
 import 'package:cric8innet/Shared/routes.dart';
 import 'package:cric8innet/core/widgets/_backButton.dart';
 import 'package:cric8innet/features/Book/data/models/venues.dart';
+import 'package:cric8innet/features/Book/display/pages/bookVenue.dart';
+import 'package:cric8innet/features/Book/display/provider/selectedDateProvider.dart';
 import 'package:cric8innet/features/Book/display/provider/selectedVenueProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PlayGroundInfo extends StatelessWidget {
+class PlayGroundInfo extends StatefulWidget {
   const PlayGroundInfo({Key? key}) : super(key: key);
+
+  @override
+  State<PlayGroundInfo> createState() => _PlayGroundInfoState();
+}
+
+class _PlayGroundInfoState extends State<PlayGroundInfo> {
+  late DateTime selectedDate;
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = DateTime.now();
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2024));
+    if (picked != null && picked != selectedDate) {
+      // Provider.of<selectedDateProvider>(context).changeSelectedDate(picked);
+      setState(() {
+        selectedDate = picked;
+      });
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => BookVenue(date: selectedDate)));
+    }
+  }
+
+  selectDateAndUpdateProvider() async {
+    _selectDate(context);
+    print("Date updated ----------------------------------------");
+    Provider.of<selectedDateProvider>(context).changeSelectedDate(selectedDate);
+    print("Provider Updated ------------------------");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +95,7 @@ class PlayGroundInfo extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                venue!.venueName!,
+                venue.venueName!,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -84,30 +121,6 @@ class PlayGroundInfo extends StatelessWidget {
               child: Text(venue.venueDes!),
             ),
           ),
-          // Align(
-          //   alignment: Alignment.centerRight,
-          //   child: SizedBox(
-          //     width: 70,
-          //     child: Card(
-          //       shape: RoundedRectangleBorder(
-          //           side: const BorderSide(color: Colors.green),
-          //           borderRadius: BorderRadius.circular(10.0)),
-          //       child: Row(
-          //         children: const [
-          //           Icon(
-          //             Icons.remove,
-          //             color: Colors.green,
-          //           ),
-          //           Text("1"),
-          //           Icon(
-          //             Icons.add,
-          //             color: Colors.green,
-          //           )
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Expanded(child: Container()),
           Padding(
             padding: const EdgeInsets.only(bottom: 30),
@@ -118,7 +131,7 @@ class PlayGroundInfo extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.bookVenue);
+                  _selectDate(context);
                 }),
           )
         ],

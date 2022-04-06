@@ -152,10 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
         if (jsonResponse != null) {
           // sharedPreferences.setString("token", jsonResponse['token']);
           sharedPreferences.setString("username", username);
-          print("JSON DATA --------------------------------------------");
-
           sharedPreferences.setString(
-              "token", jsonResponse.hashCode.toString());
+              "token", jsonResponse['user_info']['token']);
 
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
